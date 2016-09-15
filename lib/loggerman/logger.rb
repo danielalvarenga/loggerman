@@ -17,7 +17,7 @@ module Loggerman
         file = Loggerman.log_files.fetch(level.to_sym)
         logfile = File.open("#{Rails.root}/log/#{file}", 'a')
         logfile.sync = true
-        @logger_by_level[level] = ::Logger.new(logfile)
+        @logger_by_level[level] = ActiveSupport::Logger.new(logfile)
         @logger_by_level[level].formatter = Loggerman::LoggerFormatter.new
       end
       @logger_by_level[level]
