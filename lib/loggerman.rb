@@ -1,6 +1,6 @@
 require "loggerman/version"
-require 'lograge/formatters/json_formatter'
-require 'lograge/formatters/key_value_formatter'
+require 'loggerman/formatters/json_formatter'
+require 'loggerman/formatters/key_value_formatter'
 
 module Loggerman
 	mattr_accessor :logger, :application, :formatters, :format, :log_files
