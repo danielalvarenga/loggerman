@@ -1,8 +1,18 @@
 # Loggerman
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/loggerman`. To experiment with that code, run `bin/console` for an interactive prompt.
+With Loggerman is possible define a file each log level and define the format to logs.
 
-TODO: Delete this and the text above, and describe your gem
+:json example:
+
+```ruby
+{"INFO":{"time":"2016-09-16 18:20:44","method":"logger_before","params":{"controller":"sessions","action":"new"}}}
+```
+
+:key_value example:
+
+```ruby
+|INFO|time=2016-09-16 18:18:28|method="logger_before"|params={"controller"=>"sessions", "action"=>"new"}|
+```
 
 ## Installation
 
@@ -61,11 +71,8 @@ end
 For logger use:
 
 ```ruby
-Loggerman.logger.info 'any string'
-Loggerman.logger.warn key1: 'value1', key2: 'value2'
-#or
-LOGGERMAN.info 'any string'
-LOGGERMAN.warn key1: 'value1', key2: 'value2'
+Loggerman.info 'any string'
+Loggerman.warn key1: 'value1', key2: 'value2'
 ```
 
 ## Development

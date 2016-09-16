@@ -19,7 +19,7 @@ module Loggerman
 
 			def convert_exception(exception)
 				result = { class: exception.class, message: exception.message, location: exception.backtrace_locations.try(:first) }
-				result.merge!( format_message(exception.more_attributes) ) if exception.respond_to? :more_attributes && !exception.more_attributes.blank?
+				result.merge!( format_message(exception.more_attributes) ) if exception.respond_to?(:more_attributes) && !exception.more_attributes.blank?
 				result.merge!( { backtrace: exception.backtrace } )
 			end
 

@@ -38,4 +38,10 @@ module Loggerman
     application.config.loggerman
   end
 
+  %w(info debug warn error fatal unknown).each do |level|
+    define_method level.to_sym do |*args, &block|
+      Loggerman.logger.send(level.to_sym, *args, &block)
+    end
+  end
+
 end
