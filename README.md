@@ -9,7 +9,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'loggerman'
+gem 'loggerman', git: 'https://github.com/danielalvarenga/loggerman.git', branch: 'master'
 ```
 
 And then execute:
@@ -19,8 +19,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install loggerman
-
-## Usage
 
 Enable it in an initializer or the relevant environment config:
 
@@ -58,6 +56,18 @@ MyApp::Application.configure do
 end
 ```
 
+## Usage
+
+For logger use:
+
+```ruby
+Loggerman.logger.info 'any string'
+Loggerman.logger.warn key1: 'value1', key2: 'value2'
+#or
+LOGGERMAN.info 'any string'
+LOGGERMAN.warn key1: 'value1', key2: 'value2'
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -66,7 +76,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/loggerman.
+Bug reports and pull requests are welcome on GitHub at https://github.com/danielalvarenga/loggerman.
 
 
 ## License

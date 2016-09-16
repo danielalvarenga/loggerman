@@ -6,7 +6,10 @@ module Loggerman
     config.loggerman.enabled = false
 
     config.after_initialize do |app|
-      Loggerman.setup(app) if app.config.loggerman.enabled
+    	if app.config.loggerman.enabled
+	      Loggerman.setup(app)
+	      LOGGERMAN = Loggerman.logger
+	    end
     end
   end
 end
