@@ -1,4 +1,5 @@
 require "loggerman/version"
+require 'loggerman/railtie' if defined?(Rails)
 require 'loggerman/logger_formatter'
 require 'loggerman/logger'
 require 'loggerman/formatters/formatter'
@@ -6,6 +7,7 @@ require 'loggerman/formatters/json_formatter'
 require 'loggerman/formatters/key_value_formatter'
 
 module Loggerman
+  module_function
 	mattr_accessor :logger, :application, :formatters, :format, :log_files
 
   def setup(app)
@@ -33,7 +35,7 @@ module Loggerman
   end
 
   def loggerman_config
-    Rails.configuration.x.loggerman
+    application.config.loggerman
   end
 
 end

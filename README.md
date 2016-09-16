@@ -25,7 +25,7 @@ Enable it in an initializer or the relevant environment config:
 ```ruby
 # config/initializers/loggerman.rb
 MyApp::Application.configure do
-  config.x.loggerman.enabled = true
+  config.loggerman.enabled = true
 end
 ```
 
@@ -33,7 +33,7 @@ Add Logger in environment config:
 
 ```ruby
 # config/environments/production.rb
-config.x.log_formatter = Loggerman::LoggerFormatter.new
+config.log_formatter = Loggerman::LoggerFormatter.new
 ```
 
 Customize format to :key_value (default) or :json :
@@ -41,8 +41,8 @@ Customize format to :key_value (default) or :json :
 ```ruby
 # config/initializers/loggerman.rb
 MyApp::Application.configure do
-  config.x.loggerman.enabled = true
-  config.x.loggerman.format = :key_value
+  config.loggerman.enabled = true
+  config.loggerman.format = :key_value
 end
 ```
 
@@ -51,8 +51,8 @@ Customize log files by level:
 ```ruby
 # config/initializers/loggerman.rb
 MyApp::Application.configure do
-  config.x.loggerman.enabled = true
-  config.x.loggerman.log_files = { error: 'my_error_logs.log', warn: 'other_file.log' }
+  config.loggerman.enabled = true
+  config.loggerman.log_files = { error: 'my_error_logs.log', warn: 'other_file.log' }
 end
 ```
 
