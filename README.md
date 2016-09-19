@@ -1,14 +1,14 @@
 # Loggerman
 
-With Loggerman is possible define a file each log level and define the format to logs.
+Loggerman format rails logs and add a custom logger to create log files by level.
 
-:json example:
+Json format example:
 
 ```ruby
 {"INFO":{"time":"2016-09-16 18:20:44","method":"logger_before","params":{"controller":"sessions","action":"new"}}}
 ```
 
-:key_value example:
+Key_value format example:
 
 ```ruby
 |INFO|time=2016-09-16 18:18:28|method="logger_before"|params={"controller"=>"sessions", "action"=>"new"}|
@@ -26,20 +26,7 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install loggerman
-
-Enable it in an initializer or the relevant environment config:
-
-```ruby
-# config/initializers/loggerman.rb
-MyApp::Application.configure do
-  config.loggerman.enabled = true
-end
-```
-
-Add Logger in environment config:
+Configure log formatter in environment:
 
 ```ruby
 # config/environments/production.rb
@@ -51,24 +38,20 @@ Customize format to :key_value (default) or :json :
 ```ruby
 # config/initializers/loggerman.rb
 MyApp::Application.configure do
-  config.loggerman.enabled = true
   config.loggerman.format = :key_value
 end
 ```
 
-Customize log files by level:
+Customize log files by level (rails log file is default):
 
 ```ruby
 # config/initializers/loggerman.rb
 MyApp::Application.configure do
-  config.loggerman.enabled = true
   config.loggerman.log_files = { error: 'my_error_logs.log', warn: 'other_file.log' }
 end
 ```
 
 ## Usage
-
-For logger use:
 
 ```ruby
 Loggerman.info 'any string'
