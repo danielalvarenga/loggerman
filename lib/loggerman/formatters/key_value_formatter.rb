@@ -21,12 +21,13 @@ module Loggerman
 
 			def convert_exception(exception)
 				message = "exception=#{exception.class}|message=#{exception.message}|"
+				message << "location=#{exception.backtrace_locations.first}|" unless exception.backtrace_locations.blank?
 				message << "#{format_message(exception.more_attributes)}|" if exception.respond_to?(:more_attributes) && !exception.more_attributes.blank?
-				message << (exception.backtrace || []).join("\n")
+				message << "\n#{(exception.backtrace).join("\n")}" unless exception.backtrace.empty?
 				message.to_s
 			end
 
-		  def convert_string(message)
+		  def convert_other(message)
 		  	"details=#{message.inspect}|"
 		  end
 

@@ -18,12 +18,14 @@ module Loggerman
 		  end
 
 			def convert_exception(exception)
-				result = { class: exception.class, message: exception.message, location: exception.backtrace_locations.try(:first) }
-				result.merge!( format_message(exception.more_attributes) ) if exception.respond_to?(:more_attributes) && !exception.more_attributes.blank?
-				result.merge!( { backtrace: exception.backtrace } )
+				result = { exception: { class: exception.class.to_s, message: exception.message, location: exception.backtrace_locations.try(:first) } }
+				result[:exception].merge!( { location: exception.backtrace_locations.first } ) unless exception.backtrace_locations.blank?
+				result[:exception].merge!( format_message(exception.more_attributes) ) if exception.respond_to?(:more_attributes) && !exception.more_attributes.blank?
+				result[:exception].merge!( { backtrace: exception.backtrace } ) unless exception.backtrace.blank?
+				result
 			end
 
-		  def convert_string(message)
+		  def convert_other(message)
 		  	{ details: message.inspect }
 		  end
 

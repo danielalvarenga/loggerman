@@ -31,7 +31,7 @@ module Loggerman
   end
 
   def set_logger
-  	Loggerman.logger = Loggerman::Logger.new(defined?(Rails) ? "#{Rails.root}/log/#{Rails.env.to_s}.log" : "rails_default.log")
+  	Loggerman.logger = Loggerman::Logger.new(defined?(Rails) ? "#{Rails.root}/log/#{Rails.env.to_s}.log" : 'log/loggerman.log')
   end
 
   def loggerman_config

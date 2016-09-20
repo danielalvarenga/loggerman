@@ -9,11 +9,11 @@ describe Loggerman do
 
     let(:app_config) do
       double(config:
-              ActiveSupport::OrderedOptions.new.tap do |config|
-                config.loggerman = ActiveSupport::OrderedOptions.new
-                config.loggerman.log_files = { error: 'my_error_logs.log' }
-              end
-            )
+        ActiveSupport::OrderedOptions.new.tap do |config|
+          config.loggerman = ActiveSupport::OrderedOptions.new
+          config.loggerman.log_files = { error: 'my_error_logs.log' }
+        end
+      )
     end
 
     it "not set format" do

@@ -2,6 +2,12 @@ module Loggerman
 	module Formatters
 		class Formatter
 
+			def format_log(severity, timestamp, progname, message) ; raise NotImplementedError end
+			def convert_string(message) ; raise NotImplementedError end
+			def convert_hash(args) ; raise NotImplementedError end
+			def convert_exception(exception) ; raise NotImplementedError end
+			def convert_other(message) ; raise NotImplementedError end
+
 			def clean_message(message)
 				if message.is_a?(String)
 					message = message.strip.gsub(/\e\[(\d+)m/, '')
