@@ -12,10 +12,10 @@ module Loggerman
     def logger_by_level(level)
       @logger_by_level ||= {}
       return @logger_by_level[level] if @logger_by_level[level]
-      @logger_by_level[level] ||= Rails.logger
+      @logger_by_level[level] ||= defined?(Rails) ? Rails.logger : nil
       unless Loggerman.log_files[level.to_sym].blank?
         file = Loggerman.log_files.fetch(level.to_sym)
-        logfile = File.open("#{Rails.root}/log/#{file}", 'a')
+        logfile = File.open(defined?(Rails) ? "#{Rails.root}/log/#{file}" : "log/#{file}", 'a')
         logfile.sync = true
         @logger_by_level[level] = ActiveSupport::Logger.new(logfile)
         @logger_by_level[level].formatter = Loggerman::LoggerFormatter.new
