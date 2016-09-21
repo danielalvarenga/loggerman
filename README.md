@@ -26,7 +26,7 @@ And then execute:
 
     $ bundle
 
-Configure log formatter in environment:
+Configure log formatter in environment if prefer to apply format to rails default log:
 
 ```ruby
 # config/environments/production.rb
