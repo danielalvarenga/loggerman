@@ -3,7 +3,7 @@ module Loggerman
 		class KeyValueFormatter < Formatter
 
 			def format_log(severity, timestamp, progname, message)
-				log_result = "|#{severity}|time=#{timestamp.strftime("%Y-%m-%d %H:%M:%S")}|"
+				log_result = "#{timestamp.strftime("%Y-%m-%d %H:%M:%S")}|#{severity}|src=#{Socket.ip_address_list[0].ip_address}|host=#{Socket.gethostname}|"
 				log_result << "system=#{progname}|" unless progname.blank?
 				log_result << "#{format_message(message)}" unless message.blank?
 				log_result.to_s.gsub('||',"|")

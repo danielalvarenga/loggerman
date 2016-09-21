@@ -3,7 +3,7 @@ module Loggerman
 		class JsonFormatter < Formatter
 
 			def format_log(severity, timestamp, progname, message)
-				log_result = { severity => { time: timestamp.strftime("%Y-%m-%d %H:%M:%S") } }
+				log_result = { severity => { time: timestamp.strftime("%Y-%m-%d %H:%M:%S"), src: Socket.ip_address_list[0].ip_address, host: Socket.gethostname } }
 				log_result[severity].merge!( {system: progname.to_s} ) unless progname.blank?
 				log_result[severity].merge!( format_message(message) ) unless message.blank?
 				log_result.to_json
