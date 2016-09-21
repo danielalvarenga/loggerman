@@ -26,19 +26,28 @@ And then execute:
 
     $ bundle
 
-Configure log formatter in environment if prefer to apply format to rails default log:
+Configure log formatter in environment if you prefer to apply format to rails default log:
 
 ```ruby
 # config/environments/production.rb
 config.log_formatter = Loggerman::LoggerFormatter.new
 ```
 
-Customize format to :key_value (default) or :json :
+Customize log level for loggerman (rails log level is default) :
 
 ```ruby
 # config/initializers/loggerman.rb
 MyApp::Application.configure do
-  config.loggerman.format = :key_value
+  config.loggerman.level = :info
+end
+```
+
+Customize format (default is :key_value):
+
+```ruby
+# config/initializers/loggerman.rb
+MyApp::Application.configure do
+  config.loggerman.format = :key_value # or :json
 end
 ```
 
@@ -48,6 +57,15 @@ Customize log files by level (rails log file is default):
 # config/initializers/loggerman.rb
 MyApp::Application.configure do
   config.loggerman.log_files = { error: 'my_error_logs.log', warn: 'other_file.log' }
+end
+```
+
+Customize progname (rails log progname is default) :
+
+```ruby
+# config/initializers/loggerman.rb
+MyApp::Application.configure do
+  config.loggerman.progname = 'MySystem'
 end
 ```
 

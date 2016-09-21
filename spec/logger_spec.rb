@@ -24,35 +24,54 @@ describe Loggerman::Logger do
 			expect(logger).to be_is_a ActiveSupport::Logger
 			expect(logger.inspect).to be_include "File:log/my_info_logs.log"
 		end
+
 		it 'debug' do
 			Loggerman.setup(app_config)
 			logger = Loggerman.logger.logger_by_level(:debug)
 			expect(logger).to be_is_a ActiveSupport::Logger
 			expect(logger.inspect).to be_include "File:log/my_debug_logs.log"
 		end
+
 		it 'warn' do
 			Loggerman.setup(app_config)
 			logger = Loggerman.logger.logger_by_level(:warn)
 			expect(logger).to be_is_a ActiveSupport::Logger
 			expect(logger.inspect).to be_include "File:log/my_warn_logs.log"
 		end
+
 		it 'error' do
 			Loggerman.setup(app_config)
 			logger = Loggerman.logger.logger_by_level(:error)
 			expect(logger).to be_is_a ActiveSupport::Logger
 			expect(logger.inspect).to be_include "File:log/my_error_logs.log"
 		end
+
 		it 'fatal' do
 			Loggerman.setup(app_config)
 			logger = Loggerman.logger.logger_by_level(:fatal)
 			expect(logger).to be_is_a ActiveSupport::Logger
 			expect(logger.inspect).to be_include "File:log/my_fatal_logs.log"
 		end
+
 		it 'unknown' do
 			Loggerman.setup(app_config)
 			logger = Loggerman.logger.logger_by_level(:unknown)
 			expect(logger).to be_is_a ActiveSupport::Logger
 			expect(logger.inspect).to be_include "File:log/my_unknown_logs.log"
 		end
+
+    it "set progname" do
+      app_config.config.loggerman.progname = 'MySystem'
+      Loggerman.setup(app_config)
+      logger = Loggerman.logger.logger_by_level(:info)
+      expect(logger.progname).to eq 'MySystem'
+    end
+
+    it "set level" do
+      app_config.config.loggerman.level = :info
+      Loggerman.setup(app_config)
+      logger = Loggerman.logger.logger_by_level(:error)
+      expect(logger.level).to eq 1
+    end
 	end
 end

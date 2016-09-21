@@ -19,6 +19,8 @@ module Loggerman
         logfile.sync = true
         @logger_by_level[level] = ActiveSupport::Logger.new(logfile)
         @logger_by_level[level].formatter = Loggerman::LoggerFormatter.new
+        @logger_by_level[level].level = Loggerman::level
+        @logger_by_level[level].progname = Loggerman::progname
       end
       @logger_by_level[level]
     end
