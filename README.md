@@ -59,7 +59,7 @@ Key_value format example:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'loggerman', git: 'https://github.com/danielalvarenga/loggerman.git', branch: 'master'
+gem 'loggerman', '~> 0.1.0'
 ```
 
 And then execute:
